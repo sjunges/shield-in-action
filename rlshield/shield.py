@@ -107,7 +107,7 @@ def main():
         logger.info("Look up problem definition....")
         model = experiment_to_grid_model_names[args.grid_model]
         model_constants = list(inspect.signature(model).parameters.keys())
-        if args.constants is None and len(model_constants) > 0:
+        if args.constants == "" and len(model_constants) > 0:
             raise RuntimeError("Model constants {} defined, but not given by command line".format(",".join(model_constants)))
         constants = dict(item.split('=') for item in args.constants.split(","))
         input = model(**constants)
