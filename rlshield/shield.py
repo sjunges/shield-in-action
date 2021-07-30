@@ -95,6 +95,13 @@ def main():
     if args.video_path and not args.grid_model:
         raise RuntimeError("Rendering is only supported for gridstorm models!")
 
+    if args.max_runs == 0:
+        logger.info("Zero runs requested, terminate directly.")
+        exit(0)
+    if args.nr_finisher_runs == 0:
+        logger.info("Zero runs requested, terminate directly.")
+        exit(0)
+
     random.seed(args.seed)
     if args.grid_model:
         logger.info("Look up problem definition....")
